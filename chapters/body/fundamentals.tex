@@ -1,0 +1,284 @@
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+\section*{Introduction}
+\begin{enumerate}
+    \item
+    Ordered pair
+    \item 
+    Relations
+    \item
+    Functions
+\end{enumerate}
+% https://www2.lawrence.edu/fast/corrys/Math300/SetTheory.pdf
+\section{Zermelo–Fraenkel set theory}\label{sec:fundamentals:zermelo-fraenkel_set_theory}
+\subsection{Axiom of extensionality}\label{subsec:fundamentals:axiom_of_extensionality}
+\begin{equation*}
+    \forall x\forall y(\forall z:(z\in x\implies z\in y)\implies\forall w:(x\in w\implies y\in w))
+\end{equation*}
+\subsection{Axiom of regularity}\label{{subsec:fundamentals:axiom_of_regularity}}
+\begin{equation*}
+    \forall x(\exists a:(a\in x)\implies\exists y:(y\in x\land\lnot\exists z:(z\in y\land z\in x)))
+\end{equation*}
+\subsection{Axiom schema of specification}\label{subsec:fundamentals:axiom_schema_of_specification}
+s
+\subsection{Axiom of pairing}\label{subsec:fundamentals:axiom_of_pairing}
+s
+\subsection{Axiom of union}\label{subsec:fundamentals:axiom_of_union}
+s 
+\subsection{Axiom schema of replacement}\label{subsec:fundamentals:axiom_schema_of_replacement}
+s
+\subsection{Axiom of infinity}\label{subsec:fundamentals:axiom_of_infinity}
+\begin{equation*}
+    \exists X(\exists e(\forall z:\lnot(z\in e)\land e\in X)\land\forall y:(y\in X\implies y\cup\{y\}\in X))
+\end{equation*}
+\subsection{Axiom of power set}\label{subsec:fundamentals:axiom_of_power_set}
+s
+
+\section{Preliminaries}
+\begin{notation}[Set]
+    We write $\{x\}$ to denote the set containing only $x$.
+\end{notation}
+% proposition
+\begin{theorem}[Existence of a set]
+    There exists a set.
+\end{theorem}
+\begin{proof}
+    See Chapter~\ref{chap:first_order_logic}.
+\end{proof}
+\begin{definition}
+    Let $X$ be a set. Using the \nameref{subsec:fundamentals:axiom_schema_of_specification} we define
+    \begin{equation*}
+        \varnothing_X:=\{x\in X:x\neq x\}.
+    \end{equation*}
+\end{definition}
+\begin{theorem}
+    Let $X$ be a set. Then the set $\varnothing_X$ is empty. That is,
+    \begin{equation*}
+        \forall x:x\notin\varnothing_X.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Let $x$ be arbitrary. By way of contradiction, suppose $x\in\varnothing_X$. Then $x\neq x$, which is false. We have reached a falsehood and therefore we conclude $x\notin\varnothing_X$.
+\end{proof}
+\begin{corollary}
+    Let $X$ and $Y$ be sets. Then $\varnothing_X=\varnothing_Y$.
+\end{corollary}
+\begin{proof}
+    The statement is vacuously true.
+\end{proof}
+\begin{definition}[Empty set]
+    Let $X$ be a set. Define $\varnothing:=\varnothing_X$. The set $\varnothing$ will be referred to as the \emph{empty set}.
+\end{definition}
+\begin{notation}[Ordered pair]
+    Let $x$ and $y$ be sets. We define the ordered pair $(x,y)$ as the set $\{\{x\},\{x,y\}\}$. This set exists by applying the \nameref{subsec:fundamentals:axiom_of_pairing} three times.
+\end{notation}
+\begin{notation}[Cartesian product]
+    Let $X$ and $Y$ be sets. Define the \emph{Cartesian product} as
+    \begin{equation*}
+        X\times Y:=\{z\in\mathcal{P}(\mathcal{P}(X\cup Y))\mid\exists x\in X\exists y\in Y:z=(x,y)\}.
+    \end{equation*}
+    This set exists by the \nameref{subsec:fundamentals:axiom_of_union}, \nameref{subsec:fundamentals:axiom_of_power_set} and \nameref{subsec:fundamentals:axiom_schema_of_specification}.
+\end{notation}
+\begin{notation}[Ordered triple]
+    Let $x$, $y$ and $z$ be sets. We define the ordered triple as the set $(x,(y,z))$. The existence of this set follows from the existence of the ordered pair.
+\end{notation}
+\begin{definition}[Relation]
+    Let $X$ and $Y$ be sets. Let $R$ be any subset of $X\times Y$. Define a relation over $X$ and $Y$ as the the ordered triple $(X,Y,R)$. We write $xRy$ as notational shorthand for $(x,y)\in R$.
+
+    A relation may be denoted by specifying the condition $p$ under which $xRy$ holds. In this case $R=\{(x,y)\in X\times Y:p\}$.
+\end{definition}
+\begin{notation}[Domain]
+    For a relation $(X,Y,R)$ we define the \emph{domain} as
+    \begin{equation*}
+        \dom(R)=\{x\in X\mid\exists y\in Y:(x,y)\in R\}.
+    \end{equation*}
+\end{notation}
+\begin{notation}[Codomain]
+    For a relation $(X,Y,R)$ we define the \emph{codomain} as
+    \begin{equation*}
+        \codom(R)=Y.
+    \end{equation*}
+\end{notation}
+\begin{notation}[Range]
+    For a relation $(X,Y,R)$ we define the \emph{range} as
+    \begin{equation*}
+        \range(R)=\{y\in Y\mid\exists x\in X:(x,y)\in R\}.
+    \end{equation*}
+\end{notation}
+\begin{definition}[Reflexive relation]
+    A relation $(X,X,R)$ is a \emph{reflexive relation} if
+    \begin{equation*}
+        \forall x\in X:xRx.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Symmetric relation]
+    A relation $(X,X,R)$ is a \emph{symmetric relation} if
+    \begin{equation*}
+        \forall x\in X:\forall y\in X:xRy\implies yRx.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Transitive relation]
+    A relation $(X,X,R)$ is a \emph{transitive relation} if
+    \begin{equation*}
+        \forall x\in X:\forall y\in X:\forall z\in X:xRy\land yRz\implies xRz.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Equivalence relation]
+    A relation $(X,X,R)$ is an \emph{equivalence equation} if it is reflexive, symmetric and transitive.
+\end{definition}
+\begin{definition}[Total relation]
+    A relation $(X,Y,R)$ is a \emph{total relation} if
+    \begin{equation*}
+        \forall x\in X:\exists y\in Y:xRy.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Univalent relation]
+    A relation $(X,Y,R)$ is an \emph{univalent relation} if
+    \begin{equation*}
+        \forall x\in X:\forall y_1\in Y:\forall y_2\in Y:(xRy_1\land xRy_2)\implies y_1=y_2.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Function]
+    A relation $(X,Y,f)$ is a \emph{function} if it is both total and univalent. We write $f:X\to Y$ instead of $(X,Y,f)$ and $f(x)=y$ instead of $(x,y)\in f$.
+
+    A function may be denoted by specifying the condition $p$ under which $f(x)=y$. In this case $f=\{(x,y)\in X\times Y:p\}$.
+\end{definition}
+\begin{theorem}
+    For a function $f:X\to Y$ we have $\dom(f)=X$.
+\end{theorem}
+\begin{proof}
+    Let $x\in\dom(f)$ be arbitrary. By definition $x\in X$. Conversely, let $x\in X$ be arbitrary. Because $f$ is a total relation there exists a $y\in Y$ such that $(x,y)\in R$. Now by definition $x\in\dom(f)$.
+\end{proof}
+\begin{definition}[Surjective relation]
+    A relation $(X,Y,R)$ is a \emph{surjective} relation if
+    \begin{equation*}
+        \forall y\in Y:\exists x\in X:xRy.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Injective relation]
+    A relation $(X,Y,R)$ is an \emph{injective} relation if
+    \begin{equation*}
+        \forall y\in Y:\forall x_1\in X:\forall x_2\in X:(x_1Ry\land x_2Ry)\implies x_1=x_2.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Bijective function]
+    A function $f:X\to Y$ is \emph{bijective} if it is both surjective and injective. A bijective function might be referred to as a bijection.
+\end{definition}
+\begin{notation}[Relation composition]
+    Let $(X,Y,R)$ and $(Y,Z,S)$ be relations. Then the \emph{composition} of these relations is defined as the relation $(X,Z,S\circ R)$ where
+    \begin{equation*}
+        S\circ R=\{(x,z)\in X\times Z\mid\exists y\in Y:xRy\land ySz\}.
+    \end{equation*}
+\end{notation}
+\begin{definition}[Converse relation]
+    The \emph{converse relation} of the relation $(X,Y,R)$ is the relation $(Y,X,R^{-1})$ where
+    \begin{equation*}
+        R^{-1}=\{(y,x)\in Y\times X:xRy\}.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Identity relation]
+    The \emph{identity relation} is the relation $(X,X,I_X)$ where
+    \begin{equation*}
+        I_X=\{(x,x)\in X\times X:x\in X\}.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Inverse relation]
+    The converse relation $(Y,X,R^{-1})$ of the relation $(X,Y,R)$ is an \emph{inverse relation} if $R\circ R^{-1}=I_X$ and $R^{-1}\circ R=I_Y$. A relation is called invertible if an inverse relation exists.
+\end{definition}
+\begin{theorem}
+    A function is invertible if and only if it is bijective.
+\end{theorem}
+\begin{proof}
+    Let $(X,Y,R)$ be a relation. Let $(Y,X,R^{-1})$ be its converse relation. Setting $R\circ R^{-1}=I_X$ and $R^{-1}\circ R=I_Y$ is equivalent to
+    \begin{enumerate}
+        \item
+        $\forall x\in X:\exists y\in Y:xRy$,
+        \item
+        $\forall x_1\in X:\forall x_2\in X:(\exists y\in Y:x_1Ry\land x_2Ry)\implies x_1=x_2$,
+        \item
+        $\forall y\in Y:\exists x\in X:xRy$,
+        \item
+        $\forall y_1\in Y:\forall y_2\in Y:(\exists x\in X:xRy_1\land xRy_2)\implies y_1=y_2$.
+    \end{enumerate}
+    These four conditions combined are precisely the necessary requirements for bijectivity.
+\end{proof}
+
+\section{The natural numbers}
+\begin{definition}
+    Define $\mathbb{N}$ as the intersection of all sets that satisfy the \nameref{subsec:fundamentals:axiom_of_infinity}.
+\end{definition}
+\begin{theorem}
+    The set $\mathbb{N}$ satisfies the \nameref{subsec:fundamentals:axiom_of_infinity}.
+\end{theorem}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{definition}[Natural numbers]
+    We will refer to the set $\mathbb{N}$ as the set of \emph{natural numbers}. Using the definition $0:=\varnothing$ we furthermore define
+    \begin{align*}
+        1 & :=\{0\} & 4 & :=\{0,1,2,3\} & 7 & :=\{0,1,2,3,4,5,6\} \\
+        2 & :=\{0,1\} & 5 & :=\{0,1,2,3,4\} & 8 & :=\{0,1,2,3,4,5,6,7\} \\
+        3 & :=\{0,1,2\} & 6 & :=\{0,1,2,3,4,5\} & 9 & :=\{0,1,2,3,4,5,6,7,8\} \\
+    \end{align*}
+    and continue counting according to any positional notation number system.
+\end{definition}
+\begin{theorem}[Mathematical induction]
+    Let $\varphi(n)$ be any formula with free variable $n\in\mathbb{N}$. Then,
+    \begin{equation*}
+        (\varphi(0)\land(\forall n\in\mathbb{N}:\varphi(n)\implies\varphi(n+1)))\implies\forall n\in\mathbb{N}:\varphi(n).
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Define $S=\{n\in\mathbb{N}:\varphi(n)\}$. Then $S$ satisfies the \nameref{subsec:fundamentals:axiom_of_infinity}. Thus $S\supseteq\mathbb{N}$ and $\varphi(n)$ holds for all $n\in\mathbb{N}$.
+\end{proof}
+\begin{definition}[Succession]
+    Define the successor function $S:\mathbb{N}\to\mathbb{N}\setminus\{0\}$ by $S(n)=n\cup\{n\}$.
+\end{definition}
+\begin{theorem}
+    The successor function is a bijection.
+\end{theorem}
+\begin{proof}
+    We will prove surjectivity and injectivity.
+    \begin{description}
+        \item[Surjectivity.]
+        Let $b\in\mathbb{N}\setminus\{0\}$ be arbitrary. Take $a=\bigcup\{n\in b:n\subset b\}$. Then $S(a)=b$. [PROOF NEEDED]
+        \item[Injectivity.]
+        Let $b\in\mathbb{N}\setminus\{0\}$ be arbitrary. Let $a_1\in\mathbb{N}$ be arbitrary. Let $a_2\in\mathbb{N}$ be arbitrary. Suppose $S(a_1)=S(a_2)$. Then $a_1\cup\{a_1\}=a_2\cup\{a_2\}$, so $a_1\in a_2\cup\{a_2\}$ and $a_2\in a_1\cup\{a_1\}$. If $a_1\in a_2$, then clearly $a_2\notin a_1$. Hence $a_2\in\{a_1\}$ and so $a_1=a_2$. But then $a_1\notin a_2$, a contradiction. Thus $a_1\in\{a_2\}$, so $a_1=a_2$.
+    \end{description}
+    It follows that the successor function is bijective.
+\end{proof}
+\begin{definition}[Predecession]
+    Let the predecessor function $P:\mathbb{N}\setminus\{0\}\to\mathbb{N}$ be the inverse of the successor function.
+\end{definition}
+[PROOF OF RECURSION NEEDED]
+\begin{definition}[Addition]
+    Define $\placeholder+\placeholder:\mathbb{N}\times\mathbb{N}\to\mathbb{N}$ by
+    \begin{equation*}
+        a+b=
+        \begin{cases}
+            a & \text{if }b=0 \\
+            S(a+P(b)) & \text{else}
+        \end{cases}.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Multiplication]
+    Define $\placeholder\cdot\placeholder:\mathbb{N}\times\mathbb{N}\to\mathbb{N}$ by
+    \begin{equation*}
+        a\cdot b=
+        \begin{cases}
+            0 & \text{if }b=0 \\
+            (a\cdot P(b))+a & \text{else}
+        \end{cases}.
+    \end{equation*}
+\end{definition}
+\begin{definition}[Exponentiation]
+    Define $\placeholder^{\placeholder}:\mathbb{N}\setminus\{0\}\times\mathbb{N}\to\mathbb{N}\setminus\{0\}$ by
+    \begin{equation*}
+        a^b=
+        \begin{cases}
+            1 & \text{if }b=0 \\
+            a^{P(b)}\cdot a & \text{else}
+        \end{cases}.
+    \end{equation*}
+\end{definition}
+\end{document}

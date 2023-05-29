@@ -1,0 +1,85 @@
+\documentclass[11pt, a4paper]{report}
+\usepackage{csquotes}
+\usepackage{color}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[justification=centering]{caption}
+\usepackage{graphicx}
+\usepackage{enumitem}
+
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
+
+\usepackage{nameref}
+
+\usepackage{hyperref}
+\hypersetup{
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Maths From Scratch},
+    pdfpagemode=FullScreen
+}
+
+\usepackage{subfiles}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{notation}{Notation}
+\newtheorem{corollary}{Corollary}[theorem]
+
+\makeatletter
+\newcommand*\placeholder{\mathpalette\placeholder@{.5}}
+\newcommand*\placeholder@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\range}{range}
+
+\begin{document}
+
+\begin{titlepage}
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+    \begin{center}  
+        \HRule \\[0.4cm]
+        \textsc{\LARGE Maths From Scratch} \\[0.5cm]
+        \textsc{\Large The Construction of the Entirety* of Mathematics from the Ground Up} \\[0.1cm]
+        \HRule \\[1.5cm]
+
+        {\large \textsc{Frederik van der Els}} \\[1.5cm]
+
+        {\large \today} \\
+    \end{center}
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+~
+
+\chapter*{Summary}\label{chap:summary}
+\addcontentsline{toc}{chapter}{Summary}
+\subfile{chapters/summary}
+
+\newpage
+\tableofcontents
+
+\chapter*{Introduction}\label{chap:introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\subfile{chapters/introduction}
+
+\setcounter{chapter}{-1}
+\chapter{First order logic}\label{chap:first_order_logic}
+\subfile{chapters/body/first_order_logic}
+
+\chapter{Fundamentals}\label{chap:fundamentals}
+\subfile{chapters/body/fundamentals}
+
+\printbibliography[title={Bibliography}]
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\appendix
+
+\end{document}
